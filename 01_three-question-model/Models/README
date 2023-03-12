@@ -1,0 +1,28 @@
+Rename the models to "model.pkl" before executing with infer.py
+
+REFERENCE
+
+1) Beta(2,2) was used as the priors for skill1 and skill2
+   The parameters were not discretized
+   The AND deterministic factor was evaluated with 0.5 as the upper-biased threshold
+	So was AddNoise
+
+2) Beta(1000,1000) was used as the priors for skill1 and skill 2
+	The parameters were not discretized
+	The AND deterministic factor was evaliated with 0.5 as the upper-biased thereshold
+		So was AddNoise
+
+3) Beta(1,1) was used as the priors for skill1 and skill 2
+	The parameters were not discretized
+	The AND deterministic factor was evaliated with 0.5 as the upper-biased thereshold
+		So was AddNoise
+
+4) Here, the skill is taken as a real-valued parameter and classified into 0 or 1 using
+    0.5 as the threshold. Results are pretty accurate with differences in the hundredth or thousandth places
+
+5) In this model, the skill1 and skill2 were trated as distinct entities which was an incorrect assumption, given
+    the fact that for question 3, both the skills play a role in determining its correctness
+
+6) The final model, where P_skill1 and P_skill2 are the inferre posteriors, by completely treating them as discrete parameters
+    In this particular instance, the model doesn't really learn anything except that skill1 and skill2 are 0.5 and most of the rest is
+    manua calculation
