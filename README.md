@@ -4,9 +4,11 @@
 
 > **Be sure to** remove or relocate the corresponding `*.pkl` file(s) when changing model configurations. The older model will be used for inference, otherwise.
 
-## Case Study: MCQ Response to Skill Mapping
+## Study: MCQ Response to Skill Mapping
 
 ### Stages Implemented
+
+## Other Experiments
 
 ## References
 
