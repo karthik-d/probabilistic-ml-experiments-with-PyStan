@@ -16,6 +16,10 @@ In an attempt to improve the model, it is made modeled without assuming constant
 likely to have a different difficulty level, the guess probabilities for each question are inferred. This is done using the attempts 
 of each of the 22 candidates for the 48 questions and learning the guess probabilities from applicable scenarios i.e when the candidate does not possess all
 the skills required to answer a question.   
+
+**Guess Probability**: Probability that a candidate gets an answer right by guessing, when they do not have the skills necessary to answer the
+question.
+
    
 It is worth mentioning that the ground truth from the dataset was not used. Rather, all possible combinations of skill-sets were generated and used to infer the
 posterior for guess probabilities.
