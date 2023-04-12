@@ -12,13 +12,13 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 
 ### Model Improvement: Learning Guess Probabilities.
 
-In an attempt to improve the model, it is made more realistic by assuming that each question is
-bound to have its own difficulty level, the guess probabilities for each question are learnt. This is
-done using the attempts of each of the 22 candidates for the 48 questions and learning the
-guess probabilities from the scenarios where it is applicable i.e when he does not possess all
-the skills needed to answer the questions. It may be noted that the ground truth from the dataset
-was not used. Instead, all possible cases of the skill sets were generated and used to infer the
-posterior for guess probability
+In an attempt to improve the model, it is made modeled without assuming constant guess probabilities. Since each question is
+likely to have a different difficulty level, the guess probabilities for each question are inferred. This is done using the attempts 
+of each of the 22 candidates for the 48 questions and learning the guess probabilities from applicable scenarios i.e when the candidate does not possess all
+the skills required to answer a question.   
+   
+It is worth mentioning that the ground truth from the dataset was not used. Rather, all possible combinations of skill-sets were generated and used to infer the
+posterior for guess probabilities.
 
 A substantial improvement in the inference is evident after learning the guess probabilities.      
 Further improvements can be made, for instance, by learning the “**know probabilities**".
