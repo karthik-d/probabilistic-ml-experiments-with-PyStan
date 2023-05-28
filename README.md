@@ -14,6 +14,30 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 - **Goal**: Determine which skills each candidate has, and with what probability, given their answers in the test. 
 - **Dataset**: Ground truth and response data for 22 candidates across 48 assessment questions is contained in CSV files in the [data](./data) directory.
 
+### Baseline Model.
+
+#### Non-Vectorized Primitive Models.
+
+- The non-vectorized models are primitive implementations based on small subsets of data.
+- They capture all possible candidate response combinations.
+- They provide a way to intuitively ensure that the model is foundationally right, and that the assumptions and inference workflows are valid. 
+
+##### Three-Question Model.
+
+- [Link to three-question model implementation](./03_three-question-model).
+- Modeled for **2 skills** assessed through **3 questions**.
+- Factors and evaluates skill probabilities for all possible response combinations.
+
+##### Four-Question Model.
+
+- [Link to four-question model implementation](./04_four-question-model).
+- Modeled for **2 skills** assessed through **4 questions**.
+- Factors and evaluates skill probabilities for all possible response combinations.
+
+#### Complete Vectorized Model.
+
+- [Link to model implementation on complete dataset](./05_vectorized-model).
+
 ### Model Improvement: Learning Guess Probabilities.
 
 - To improve the probabilistic model, the guess probabilities are no longer assumed to be constant.
