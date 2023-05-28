@@ -10,11 +10,22 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 
 > An elaborate case study description can be found in [MBML Book, Chapter 2](https://www.mbmlbook.com/LearningSkills.html).
 
-- Candidates take a multiple-choice test.
+- Candidates take a multiple-choice test comprising 5 choices per question, with exactly one right answer per question.
 - **Goal**: Determine which skills each candidate has, and with what probability, given their answers in the test. 
 - **Dataset**: Ground truth and response data for 22 candidates across 48 assessment questions is contained in CSV files in the [data](./data) directory.
 
-### Baseline Model.
+### Incremental Solution Implementation
+
+The solution is implemented as a probabilstic model that makes the following initial set of assumptions on the data,
+1. A candidate has either mastered each skill or not.
+2. Before seeing any test results, it is equally likely that a candidate does or doesn’t have any particular skill.
+3. If a candidate has all of the skills needed for a question, then they are likely to make a mistake once in ten times (a 90% right answer probability).
+4. If a candidate doesn’t have all the skills needed for a question, they will pick an answer at random. Hence, there’s a one in five chance that they get the question right (a 20% right answer probability, assuming a uniform guessing distribution of course!).
+5. Whether the candidate gets a question right depends only on what skills that candidate has, and not on anything else. 
+
+Assumptions 3 and 4 essentially give rise to a **model parameter** each, and they can be tuned over time.
+
+The following **factor graph** represents the model, its assumptions, and data flow.
 
 #### Non-Vectorized Primitive Models.
 
@@ -37,6 +48,8 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 #### Complete Vectorized Model.
 
 - [Link to model implementation on complete dataset](./05_vectorized-model).
+- This is the first realisitic models that uses the complete dataset.
+- It carries the original model assumptions.
 
 ### Model Improvement: Learning Guess Probabilities.
 
