@@ -8,13 +8,17 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 
 ## Experiment: Mapping MCQ Test Responses to Candidate Skills
 
-<add description>
+> An elaborate case study description can be found in [MBML Book, Chapter 2](https://www.mbmlbook.com/LearningSkills.html).
+
+- Candidates take a multiple-choice test.
+- **Goal**: Determine which skills each candidate has, and with what probability, given their answers in the test. 
+- **Dataset**: Ground truth and response data for 22 candidates across 48 assessment questions is contained in CSV files in the [data](./data) directory.
 
 ### Model Improvement: Learning Guess Probabilities.
 
-In an attempt to improve the model, it is made modeled without assuming constant guess probabilities. Since each question is
-likely to have a different difficulty level, the guess probabilities for each question are inferred. This is done using the attempts 
-of each of the 22 candidates for the 48 questions and learning the guess probabilities from applicable scenarios i.e when the candidate does not possess all
+- To improve the probabilistic model, the guess probabilities are no longer assumed to be constant.
+- Rather, the guess probability for each question is inferred through **message passing** and **belief propagation**  in the undirected factor graph.
+- Specificially, the attempts of each of the 22 candidates for the 48 questions and learning the guess probabilities from applicable scenarios i.e when the candidate does not possess all
 the skills required to answer a question.   
 
 **Guess Probability**: Probability that a candidate gets an answer right by guessing, when they do not have the skills necessary to answer the
@@ -31,5 +35,7 @@ Further improvements can be made, for instance, by learning the “**know probab
 
 ## References
 
-- [PySTAN Documentation](https://pystan.readthedocs.io/en/latest/)
-- [STAN Documentation](https://mc-stan.org/users/documentation/)
+- [Model-Based Machine Learning *by John Winn*](https://www.mbmlbook.com/).
+- [Equivalent C# Infer.NET Implementation](https://github.com/dotnet/mbmlbook/tree/main).
+- [PySTAN Documentation](https://pystan.readthedocs.io/en/latest/).
+- [STAN Documentation](https://mc-stan.org/users/documentation/).
