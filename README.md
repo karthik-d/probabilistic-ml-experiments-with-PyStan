@@ -11,6 +11,7 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 > An elaborate case study description can be found in [MBML Book, Chapter 2](https://www.mbmlbook.com/LearningSkills.html).
 
 - Candidates take a multiple-choice test comprising 5 choices per question, with exactly one right answer per question.
+- Each question is associated with a set of skills (one or more), that forms a part of the given dataset.
 - **Goal**: Determine which skills each candidate has, and with what probability, given their answers in the test. 
 - **Dataset**: Ground truth and response data for 22 candidates across 48 assessment questions is contained in CSV files in the [data](./data) directory.
 
