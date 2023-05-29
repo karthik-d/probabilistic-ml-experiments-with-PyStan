@@ -13,7 +13,7 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 - Candidates take a multiple-choice test comprising 5 choices per question, with exactly one right answer per question.
 - Each question is associated with a set of skills (one or more), that forms a part of the given dataset.
 - **Goal**: Determine which skills each candidate has, and with what probability, given their answers in the test. 
-- **Dataset**: Skill ground truth and response data for **22 candidates**, across **48 questions**, to assess **7 skills**, is contained in CSV files in the [data](./data) directory.
+- **Dataset**: Skill ground truth and response data for **22 candidates**, across **48 questions**, to assess **7 skills**, is contained in CSV files in the [data directory](./data).
 
 The following binary heatmap represents the skills, one or more, assessed by each of the 48 questions in the dataset.   
    
@@ -24,15 +24,15 @@ The following binary heatmap represents the skills, one or more, assessed by eac
 
 The solution is implemented as a probabilstic model that makes the following initial set of assumptions on the data,
 
-<i>
-A. A candidate has either mastered each skill or not.
-B. Before seeing any test results, it is equally likely that a candidate does or doesn’t have any particular skill.
-C. If a candidate has all of the skills needed for a question, then they are likely to make a mistake once in ten times -- a 90% right answer probability.
-D. If a candidate doesn’t have all the skills needed for a question, they will pick an answer at random. Hence, there’s a one in five chance that they get the question right -- a 20% right answer probability, assuming a uniform guessing distribution of course!
-E. Whether the candidate gets a question right depends only on what skills that candidate has, and not on anything else. 
-</i>
+<ol type="A"><i>
+<li>A candidate has either mastered each skill or not.</li>
+<li>Before seeing any test results, it is equally likely that a candidate does or doesn’t have any particular skill.</li>
+<li>If a candidate has all of the skills needed for a question, then they are likely to make a mistake once in ten times -- a 90% right answer probability.</li>
+<li>If a candidate doesn’t have all the skills needed for a question, they will pick an answer at random. Hence, there’s a one in five chance that they get the question right -- a 20% right answer probability, assuming a uniform guessing distribution of course!</li>
+<li>Whether the candidate gets a question right depends only on what skills that candidate has, and not on anything else.</li>
+</i></ol>
    
-Assumptions C and D essentially give rise to a **model parameter** each, and they can be fine-tuned over time.
+_Assumptions C and D_ essentially give rise to a **model parameter** each, and they can be fine-tuned over time.
 
 #### Non-Vectorized Primitive Models
 
