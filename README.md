@@ -67,6 +67,7 @@ The following **factor graph** represents the model and message flow for the fou
 - [Link to model implementation on complete dataset](./05_vectorized-model).
 - This is the first realisitic models that uses the complete dataset for inference.
 - It carries the original model assumptions.
+- The implementation used matrix operations for message passing and inference to manage larger datasets effectively, and to optimize for a GPU.
 
 THe following three-feature heatmap represents the correct and incorrect reponses of the 22 candidates to the 48 questions.   
 - White blocks represent questions answered correctly, where colored boxes represent incorrect responses.
@@ -83,7 +84,7 @@ The inferred skill probabilities are compared against the ground truth data on s
 - Instead, the guess probability for each question is inferred through **message passing** and **belief propagation**  in the undirected factor graph.
 - Specificially, assumption D is modified as follows,
 
-<i><q></q></i> 
+<i><q>If a candidate doesn’t have all the skills needed for a question, they will pick an answer at random. **The probability of getting a question right, called the guess probability, is inferred from data**.</q></i> 
 
 The inferred skill probabilities, when applying learnt guess probabilities, are compared against baseline performance and the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
    
@@ -95,7 +96,6 @@ The inferred skill probabilities, when applying learnt guess probabilities, are 
 A substantial improvement in the inference is evident after learning the guess probabilities.      
 Further improvements can be made, for instance, by learning the “**know probabilities**".
 
-
 ## Other Experiments
 
 ## References
@@ -104,8 +104,3 @@ Further improvements can be made, for instance, by learning the “**know probab
 - [Equivalent C# Infer.NET Implementation](https://github.com/dotnet/mbmlbook/tree/main).
 - [PySTAN Documentation](https://pystan.readthedocs.io/en/latest/).
 - [STAN Documentation](https://mc-stan.org/users/documentation/).
-
-## Glossary
-
-- Guess Probability**: Probability that a candidate gets an answer right by guessing, when they do not have the skills necessary to answer the
-question.
