@@ -17,12 +17,10 @@ Probabilistic modeling using PyStan with demonstrative case study experiments fr
 
 The following binary heatmap represents the skills, one or more, assessed by each of the 48 questions in the dataset.   
    
-<img src="./assets/skill-question-map.png" alt="skill-question-map" />
+<img src="./assets/skill-question-map.png" alt="skill-question-map" width="750" />
 
-
-### Incremental Solution Implementation
-
-The solution is implemented as a probabilstic model that makes the following initial set of assumptions on the data,
+The solution is implemented incrementally.   
+A **probabilstic model** is formulated that makes the following **initial set of assumptions** on the data,
 
 <ol type="A"><i>
 <li>A candidate has either mastered each skill or not.</li>
@@ -34,51 +32,54 @@ The solution is implemented as a probabilstic model that makes the following ini
    
 _Assumptions C and D_ essentially give rise to a **model parameter** each, and they can be fine-tuned over time.
 
-#### Non-Vectorized Primitive Models
+### Non-Vectorized Primitive Models
 
 - The non-vectorized models are primitive implementations based on small subsets of data.
 - They capture all possible candidate response combinations.
 - They provide a way to intuitively ensure that the model is foundationally right, and that the assumptions and inference workflows are valid. 
 
-##### Three-Question Model
+#### Three-Question Model
 
 - [Link to three-question model implementation](./03_three-question-model).
-- Modeled for **2 skills** assessed through **3 questions****.
-- These are **skills 1 and 7**; and **questions 1 through 3 on the skill-question heatmap. 
+- Modeled for **2 skills** assessed through **3 questions**.
+- These are **skills 1 and 7**; and **questions 1 through 3** on the skill-question heatmap. 
 - Factors and evaluates skill probabilities for all possible response combinations.
 
 The following **factor graph** represents the model and message flow for the three-question scenario. 
    
-<img src="./assets/3q-factor-graph.png" alt="3q-factor-graph" />
+<img src="./assets/3q-factor-graph.png" alt="3q-factor-graph" width="500" />
 
-##### Four-Question Model
+#### Four-Question Model
 
 - [Link to four-question model implementation](./04_four-question-model).
 - Modeled for **2 skills** assessed through **4 questions**.
-- These are **skills 1 and 7**; and **questions 1 through 3 on the skill-question heatmap. 
+- These are **skills 1 and 7**; and **questions 1 through 3** on the skill-question heatmap. 
 - Factors and evaluates skill probabilities for all possible response combinations.
 
 The following **factor graph** represents the model and message flow for the four-question scenario.  
    
-<img src="./assets/4q-factor-graph.png" alt="4q-factor-graph" />
+<img src="./assets/4q-factor-graph.png" alt="4q-factor-graph" width="550" />
 
-#### Baseline Vectorized Model
+### Baseline Vectorized Model
 
 - [Link to model implementation on complete dataset](./05_vectorized-model).
 - This is the first realisitic models that uses the complete dataset for inference.
 - It carries the original model assumptions.
 - The implementation used matrix operations for message passing and inference to manage larger datasets effectively, and to optimize for a GPU.
 
-THe following three-feature heatmap represents the correct and incorrect reponses of the 22 candidates to the 48 questions.   
+The following three-feature heatmap represents the correct and incorrect reponses of the 22 candidates to the 48 questions.    
+      
+<img src="./assets/question-response-map.png" alt="question-response-map" width="750" />
+   
 - White blocks represent questions answered correctly, where colored boxes represent incorrect responses.
 - The colors also mark each incorrect response with the skills required to answer them.
 - The heatmap helps visually and qualitatively assess, which candidate likely lacks what skills.
 
 The inferred skill probabilities are compared against the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
    
-<img src="./assets/result-baseline.png" alt="result-baseline" width="300" />
+<img src="./assets/result-baseline.png" alt="result-baseline" width="500" />
 
-#### Improved Vectorized Model: Learning Guess Probabilities
+### Improved Vectorized Model: Learning Guess Probabilities
 
 - To improve the probabilistic model, the guess probabilities are no longer assumed to be constant.
 - Instead, the guess probability for each question is inferred through **message passing** and **belief propagation**  in the undirected factor graph.
@@ -88,7 +89,7 @@ The inferred skill probabilities are compared against the ground truth data on s
 
 The inferred skill probabilities, when applying learnt guess probabilities, are compared against baseline performance and the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
    
-<img src="./assets/result-improved.png" alt="result-improved" width="500" />
+<img src="./assets/result-improved.png" alt="result-improved" width="700" />
    
 > Note that the ground truth is not used for this inference.    
 > Rather, all possible combinations of 'skill-sets' are generated and 'belief propagated' to infer the posterior for guess probabilities.
