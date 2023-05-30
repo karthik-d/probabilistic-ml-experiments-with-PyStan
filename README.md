@@ -62,7 +62,7 @@ The following **factor graph** represents the model and message flow for the fou
 
 ### Baseline Vectorized Model
 
-- [Link to model implementation on complete dataset](./05_vectorized-model).
+- [Link to baseline implementation on complete dataset](./05_vectorized-model).
 - This is the first realisitic models that uses the complete dataset for inference.
 - It carries the original model assumptions.
 - The implementation used matrix operations for message passing and inference to manage larger datasets effectively, and to optimize for a GPU.
@@ -79,8 +79,17 @@ The inferred skill probabilities are compared against the ground truth data on s
    
 <img src="./assets/result-baseline.png" alt="result-baseline" width="500" />
 
+### Ancerstral Sampling: Sampled Candidate Responses for 
+
+- [Link to baseline applied on **ancestrally sampled data**](./06_ancestral-sampling).
+
+The inferred skill probabilities based on samples response data are compared against the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
+   
+<img src="./assets/result-ancestral.png" alt="result-ancestral" width="500" />
+
 ### Improved Vectorized Model: Learning Guess Probabilities
 
+- [Link to improved implementation on complete dataset](./07_inferring-guess-probabilities).
 - To improve the probabilistic model, the guess probabilities are no longer assumed to be constant.
 - Instead, the guess probability for each question is inferred through **message passing** and **belief propagation**  in the undirected factor graph.
 - Specificially, assumption D is modified as follows,
