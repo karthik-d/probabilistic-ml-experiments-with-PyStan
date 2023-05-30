@@ -79,9 +79,12 @@ The inferred skill probabilities are compared against the ground truth data on s
    
 <img src="./assets/result-baseline.png" alt="result-baseline" width="500" />
 
-### Ancerstral Sampling: Sampled Candidate Responses for 
+### Diagnosing Issues: Ancestral Sampling to Generate Idealistic Sythetic Dataset
 
 - [Link to baseline applied on **ancestrally sampled data**](./06_ancestral-sampling).
+- Ancestral sampling uses the model assumptions of underlying probability distributions of the factors to sample a dataset.
+- .
+- The final results may be used to evaluate the model assumptions.
 
 The inferred skill probabilities based on samples response data are compared against the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
    
