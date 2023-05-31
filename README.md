@@ -75,31 +75,37 @@ The following three-feature heatmap represents the correct and incorrect reponse
 - The colors also mark each incorrect response with the skills required to answer them.
 - The heatmap helps visually and qualitatively assess, which candidate likely lacks what skills.
 
-The inferred skill probabilities are compared against the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
+The inferred skill probabilities are compared against the ground truth data on skills possessed by each of the 22 candidates in the grayscale heatmap below.   
    
 <img src="./assets/result-baseline.png" alt="result-baseline" width="500" />
 
 ### Diagnosing Issues: Ancestral Sampling to Generate Idealistic Sythetic Dataset
 
 - [Link to baseline applied on **ancestrally sampled data**](./06_ancestral-sampling).
-- Ancestral sampling uses the model assumptions of underlying probability distributions of the factors to sample a dataset.
-- .
-- The final results may be used to evaluate the model assumptions.
+- Ancestral sampling uses the model assumptions of underlying probability distributions of the factors to sample a synthetic dataset.
+- In essence, the synthetic dataset manifests the model assumptions.
+- Hence, the results may be used to evaluate the model assumptions and inference method.
 
-The inferred skill probabilities based on samples response data are compared against the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
+The inferred skill probabilities based on sampled response data are compared against the ground truth data on skills possessed by each of the 22 candidates in the grayscale heatmap below.   
    
 <img src="./assets/result-ancestral.png" alt="result-ancestral" width="500" />
+
+- The obtained results match the ground truth quite well, and much better than the baseline model.
+- Since an idealistic dataset representing the model assumptions correctly gives rise to good inference, the inference methods and steps are valid and correct.
+- The problem, however, lies in the model assumptions or the parameters therein; It does not represent the real data well.
+- The next steps would involve sampling on select portions of the factor graph, freezing the rest, to identify which parameters/assumptions give rise to inaccuracies, and modifying them.
 
 ### Improved Vectorized Model: Learning Guess Probabilities
 
 - [Link to improved implementation on complete dataset](./07_inferring-guess-probabilities).
+- Selective ancestral sampling for analysis (code not included) suggests that guess probability values are not very realistic; Candidates are able to guess correct answers more often than once in ten attempts.
 - To improve the probabilistic model, the guess probabilities are no longer assumed to be constant.
 - Instead, the guess probability for each question is inferred through **message passing** and **belief propagation**  in the undirected factor graph.
-- Specificially, assumption D is modified as follows,
+- Specificially, assumption D is modified as follows.
 
 <i><q>If a candidate doesn’t have all the skills needed for a question, they will pick an answer at random. **The probability of getting a question right, called the guess probability, is inferred from data**.</q></i> 
 
-The inferred skill probabilities, when applying learnt guess probabilities, are compared against baseline performance and the ground truth data on skills possessed by each of the 22 candidates in the binary heatmap below.   
+The inferred skill probabilities, when applying learnt guess probabilities, are compared against baseline performance and the ground truth data on skills possessed by each of the 22 candidates in the grayscale heatmap below.   
    
 <img src="./assets/result-improved.png" alt="result-improved" width="700" />
    
@@ -107,7 +113,7 @@ The inferred skill probabilities, when applying learnt guess probabilities, are 
 > Rather, all possible combinations of 'skill-sets' are generated and 'belief propagated' to infer the posterior for guess probabilities.
 
 A substantial improvement in the inference is evident after learning the guess probabilities.      
-Further improvements can be made, for instance, by learning the “**know probabilities**".
+Further improvements can be made, for instance, by learning the “**know probabilities**" and targetedly diagnosing other assumptions of the model.
 
 ## Other Experiments
 
